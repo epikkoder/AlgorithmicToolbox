@@ -27,6 +27,8 @@ namespace MaximumPairwiseProduct
 			Console.WriteLine("Running MaxPairwiseProductFast...");
 			product = MaxPairwiseProductFast(numbers);
 			Console.WriteLine("Maximum product is " + product);
+
+			Console.ReadLine();
 		}
 
 		public static int MaxPairwiseProductNaive(int[] numbers)
@@ -53,7 +55,7 @@ namespace MaximumPairwiseProduct
 		public static int MaxPairwiseProductFast(int[] numbers)
 		{
 			int index1 = 0;
-			for (int i = 1; i < numbers.Length; i++)
+			for (int i = 0; i < numbers.Length; i++)
 			{
 				if (numbers[i] > numbers[index1])
 				{
@@ -61,10 +63,23 @@ namespace MaximumPairwiseProduct
 				}
 			}
 
-			int index2 = 0;
+			int index2;
+			if (index1 == 0)
+			{
+				index2 = 1;
+			}
+			else
+			{
+				index2 = 0;
+			}
 			for (int i = 0; i < numbers.Length; i++)
 			{
-				if (numbers[i] != numbers[index1] && numbers[i] > numbers[index2])
+				if (i == index1)
+				{
+					continue;
+				}
+
+				if (numbers[i] > numbers[index2])
 				{
 					index2 = i;
 				}
